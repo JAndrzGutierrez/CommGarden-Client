@@ -1,11 +1,19 @@
 import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
+import { Routes, Route } from "react-router-dom";
+import Container from "react-bootstrap/Container";
 
 function App() {
   return (
-    <div className="App">
+    <Container id="page-contairner" className="App">
       <LandingPage/>
-    </div>
+
+      <main>
+        <Routes>
+          <Route path='#home' element={<LandingPage/>}></Route>
+        </Routes>
+      </main>
+    </Container>
   );
 }
 
