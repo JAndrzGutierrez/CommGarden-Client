@@ -2,6 +2,7 @@ import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
 import NavDropdown from "react-bootstrap/NavDropdown"
+import SignUpForm from "../SignUpForm/SignUpForm"
  
 const NavBar = () =>{
     return(
@@ -9,8 +10,10 @@ const NavBar = () =>{
         <Container>
             <Navbar.Brand href="#home">Community Garden</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
+            <SignUpForm/>
                 <Nav.Link href="#home">Home</Nav.Link>
                 <Nav.Link href="#about">About</Nav.Link>
                 <Nav.Link href="#the-garden">The Garden</Nav.Link>
