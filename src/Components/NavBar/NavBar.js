@@ -6,7 +6,7 @@ import NavDropdown from "react-bootstrap/NavDropdown"
  
 const NavBar = () =>{
     return(
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
             <Navbar.Brand href="#home">Community Garden</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -28,7 +28,5 @@ const NavBar = () =>{
         </Navbar>
     )
 }
-
-
 
 export default NavBar
