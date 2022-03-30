@@ -1,18 +1,11 @@
-import NavBar from "../NavBar/NavBar"
-import SignInForm from "../SignInForm/SignInForm"
-
-
-
+import SignInForm from "../SignInForm/SignInForm";
 
 const LandingPage = () => {
-   
-    return(
-        
-        <div className="landing-page">
-         <NavBar/>
-         <SignInForm/>
-         </div> 
-    )
-}
+  return (
+    <div className="landing-page">
+      <SignInForm />
+    </div>
+  );
+};
 
-export default LandingPage
+export default LandingPage;
