@@ -1,16 +1,14 @@
 import './App.css';
 import NavBar from './Components/NavBar/NavBar';
 import LandingPage from './Components/LandingPage/LandingPage';
-import About from './Components/About/About'
-import ApiCall from './Components/ApiCall/ApiCall';
-
+import About from './Components/About/About';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div id="page-contairner" className="App">
       <NavBar />
-      <ApiCall/>
+     
       <main>
         <Routes>
           <Route path='/home' element={<LandingPage/>}></Route>

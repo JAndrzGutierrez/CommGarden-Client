@@ -1,87 +1,77 @@
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
-import { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 
-// SignUp Form
 
+// SignUp Form 
 const SignUpForm = () => {
-  // useState
-const [show, setShow] = useState(false);
-const [formData, setformData] = useState({email : "", password : ""})
-
-  // handle variables
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const apiUrl = "http://localhost:8000";
-  const baseUrl =
-    process.env.NODE_ENV === "production" ? null : "http://localhost:8000";
-  const api = axios.create({
-    baseURL: baseUrl,
-  });
-
-  const handleSubmit = async (data) => {
-    // event.preventDefault();
-    const resp = await axios.post(apiUrl + "sign-up", { user: data });
-    localStorage.setItem("authToken", resp.data.token);
-    api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`;
-    return resp.data.user;
-
-    // setToggle(!toggle);
-  };
-
+  // LOGIC
+// Use States
+  const [signupform, setSignUpForm] = useState({ email: "", password: "" });
+  const [submit, setSubmit] = useState();
   
-  // to do list
-  // Handle change
-  // Handle 
-  // Add value and onchange 
 
+  // API URLS/PATHS
+  // const SignUpUrl = "https://localhost/8000/sign-up/";
+  // const SignInUrl = "https://localhost/8000/sign-in/";
+  
+
+  // HandleSubmit for SignUp
+  const handleSubmit = (event) => {
+    event.preventDefault();
+   fetch('http://localhost:8000/sign-up/',{
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify ({
+        email: signupform.email, 
+        password: signupform.password
+      })
+   }).then(res => {
+     return res.json()
+   })
+    .then(data => console.log(data))
+    .catch(error => console.log('Error - Check Fetch Request'))
+  }
+ 
+  // HandleChange for SignUp
+  const handleChange = (event) =>{
+    event.persist();
+    setSignUpForm((prevSubmit) =>{
+      const editedSubmit= {
+        ...prevSubmit,
+        [event.target.name]: event.target.value,
+      };
+      console.log(editedSubmit)
+      return editedSubmit;
+    })
+  }
+  // This is the code that shows in the browser
   return (
     <div className="sign-up-form">
-      <Button variant="primary" onClick={handleShow}>
-        Sign Up
-      </Button>
+      <form onSubmit={handleSubmit}>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Sign Up</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={
-            () => {handleSubmit(formData)}}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
+      <input
+        onChange={handleChange}
+        value={ signupform.email }
+        placeholder="Your email goes here."
+        name="email"
+      />
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose} >
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <input
+        onChange={handleChange}
+        value={ signupform.password }
+        placeholder="Your password goes here."
+        name="password"
+      />
+
+      <button type="Submit">
+            Sign-up
+      </button>
+
+</form>
     </div>
   );
+
 };
 
 export default SignUpForm;
