@@ -5,6 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown"
 import SignUpForm from "../SignUpForm/SignUpForm"
 import SignOutButton from "../SignOutButton/SignOutButton"
 import { Link } from "react-router-dom"
+import SignInForm from "../SignInForm/SignInForm"
  
 const NavBar = () =>{
     return(
@@ -16,7 +17,6 @@ const NavBar = () =>{
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
             <SignUpForm/>
-            
                <Nav.Link href="#home"><Link className="nav-bar-link" to='/home'>Home</Link></Nav.Link> 
                 <Nav.Link href="#about"><Link className="nav-bar-link" to='/about'>About</Link></Nav.Link>
                 <Nav.Link href="#the-garden">The Garden</Nav.Link>

@@ -28,7 +28,9 @@ const SignInForm = () => {
    })
     // .then(data => console.log(data))
     .then(data => setInfo(data))
+    .then(console.log(info))
     .catch(error => console.log('Error - Check Fetch Request'))
+
   }
  
   // HandleChange for SignUp
@@ -65,7 +67,7 @@ const SignInForm = () => {
     
     .catch(error => console.log('Error - Check Fetch Request'))
   }  
-  console.log(info.user.token)
+  // console.log(info.user.token)
 
   
   
