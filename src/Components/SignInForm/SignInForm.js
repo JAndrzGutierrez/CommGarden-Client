@@ -1,85 +1,78 @@
-import {useState} from "react"
-import Container  from "react-bootstrap/Container"
-import Form from "react-bootstrap/Form"
+import { useState, useEffect } from "react";
 
 const SignInForm = () => {
-        // React States
-        const [errorMessages, setErrorMessages] = useState({});
-        const [isSubmitted, setIsSubmitted] = useState(false);
-      
-        // User Login info
-        const database = [
-          {
-            username: "user1",
-            password: "pass1"
-          },
-          {
-            username: "user2",
-            password: "pass2"
-          }
-        ];
-      
-        const errors = {
-          uname: "invalid username",
-          pass: "invalid password"
-        };
-      
-        const handleSubmit = (event) => {
-          //Prevent page reload
-          event.preventDefault();
-      
-          var { uname, pass } = document.forms[0];
-      
-          // Find user login info
-          const userData = database.find((user) => user.username === uname.value);
-      
-          // Compare user info
-          if (userData) {
-            if (userData.password !== pass.value) {
-              // Invalid password
-              setErrorMessages({ name: "pass", message: errors.pass });
-            } else {
-              setIsSubmitted(true);
-            }
-          } else {
-            // Username not found
-            setErrorMessages({ name: "uname", message: errors.uname });
-          }
-        };
-      
-        // Generate JSX code for error message
-        const renderErrorMessage = (name) =>
-          name === errorMessages.name && (
-            <Container className="error">{errorMessages.message}</Container>
-          );
-      
-        // JSX code for login form
-        const renderForm = (
-          <Container className="form">
-            <Form onSubmit={handleSubmit}>
-              <Container className="input-container">
-                <label>Username </label>
-                <input type="text" name="uname" required />
-                {renderErrorMessage("uname")}
-              </Container>
-              <Container className="input-container">
-                <label>Password </label>
-                <input type="password" name="pass" required />
-                {renderErrorMessage("pass")}
-              </Container>
-              <Container className="button-container">
-                <input type="submit" />
-              </Container>
-            </Form>
-          </Container>
-        );
-      
-        return (
-            <div className="login-form">
-              <div className="title">Sign In</div>
-              {isSubmitted ? <div>Successfully logged as {database[0].username} </div> : renderForm}
-            </div>
-        );
-      }
+  // LOGIC
+// Use States
+  const [signInform, setSignInForm] = useState({ email: "", password: "" });
+  const [submit, setSubmit] = useState();
+  
+
+  // API URLS/PATHS
+  // const SignUpUrl = "https://localhost/8000/sign-up/";
+  // const SignInUrl = "https://localhost/8000/sign-in/";
+  
+
+  // HandleSubmit for SignUp
+  const handleSubmit = (event) => {
+    event.preventDefault();
+   fetch('http://localhost:8000/sign-in/',{
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify ({
+        email: signInform.email, 
+        password: signInform.password
+      })
+   }).then(res => {
+     return res.json()
+   })
+    .then(data => console.log(data))
+    .catch(error => console.log('Error - Check Fetch Request'))
+  }
+ 
+  // HandleChange for SignUp
+  const handleChange = (event) =>{
+    event.persist();
+    setSignInForm((prevSubmit) =>{
+      const editedSubmit= {
+        ...prevSubmit,
+        [event.target.name]: event.target.value,
+      };
+      console.log(editedSubmit)
+      return editedSubmit;
+    })
+  }
+  // This is the code that shows in the browser
+
+
+
+
+return (
+  <div className="sign-in-form">
+    <form onSubmit={handleSubmit}>
+
+    <input
+      onChange={handleChange}
+      value={ signInform.email }
+      placeholder="Email Address."
+      name="email"
+    />
+
+    <input
+      onChange={handleChange}
+      value={ signInform.password }
+      placeholder="Password."
+      name="password"
+    />
+
+    <button type="Submit">
+          Sign-In
+    </button>
+
+</form>
+</div>
+)
+}
 
 export default SignInForm

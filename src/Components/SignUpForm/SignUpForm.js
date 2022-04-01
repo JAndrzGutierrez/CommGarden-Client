@@ -53,14 +53,14 @@ const SignUpForm = () => {
       <input
         onChange={handleChange}
         value={ signupform.email }
-        placeholder="Your email goes here."
+        placeholder="Email Address."
         name="email"
       />
 
       <input
         onChange={handleChange}
         value={ signupform.password }
-        placeholder="Your password goes here."
+        placeholder="Password."
         name="password"
       />
 
