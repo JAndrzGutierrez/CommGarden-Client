@@ -19,11 +19,11 @@ const NavBar = () =>{
                 <Nav.Link href="#about"><Link className="nav-bar-link" to='/about'>About</Link></Nav.Link>
                 <Nav.Link href="#the-garden">The Garden</Nav.Link>
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.1"><Link className="nav-bar-link" to='/index'>Action</Link></NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2"><Link className="nav-bar-link" to='/index1'>Another action</Link></NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3"><Link className="nav-bar-link" to='/index2'>Something</Link></NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">About Community Gardens</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.4"><Link className="nav-bar-link" to='/index3'>About Community Gardens</Link></NavDropdown.Item>
                 </NavDropdown>
             </Nav>
             </Navbar.Collapse>

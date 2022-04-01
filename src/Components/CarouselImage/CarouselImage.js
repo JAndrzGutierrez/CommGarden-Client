@@ -1,39 +1,37 @@
 import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
+import Container from "react-bootstrap/Container";
+// images import
 import communitygarden from "../../Images/communitygarden.png";
-import Container from "react-bootstrap/Container"
+import garden from "../../Images/garden.png";
+import vegetables from "../../Images/vegetables.png";
 
 const CarouselImage = () => {
   return (
-    <>
+    <Container fluid="sm">
       <Carousel>
         <Carousel.Item interval={1000}>
-<Container fluid="sm">
-<Image
-            
+          <Image
             className="d-block w-100"
             src={communitygarden}
             alt="First slide"
           />
-</Container>
           <Carousel.Caption>
-            <h3>First slide label</h3>
+            <h3>Welcome to Community Garden</h3>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={500}>
-          <img className="d-block w-100" src="" alt="Second slide" />
+          <img className="d-block w-100"
+            src={garden}
+            alt="Second slide" />
           <Carousel.Caption>
             <h3>Second slide label</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="holder.js/800x400?text=Third slide&bg=20232a"
-            alt="Third slide"
-          />
+          <img className="d-block w-100" src={vegetables} alt="Third slide" />
           <Carousel.Caption>
             <h3>Third slide label</h3>
             <p>
@@ -42,7 +40,7 @@ const CarouselImage = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-    </>
+    </Container>
   );
 };
 
