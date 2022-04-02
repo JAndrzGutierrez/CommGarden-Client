@@ -55,7 +55,7 @@ const SignInForm = () => {
 
   const handleSignOut = (event) => {
     event.preventDefault();
-    console.log('Mikes token ', info.user.token);
+    console.log('Users', info.user.token);
     fetch('http://localhost:8000/sign-out/', {
       headers: {
         'Content-Type': 'application/json',
