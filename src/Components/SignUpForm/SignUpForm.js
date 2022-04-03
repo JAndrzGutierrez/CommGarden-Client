@@ -1,77 +1,95 @@
 import { useState, useEffect } from "react";
-
-
-// SignUp Form 
+import Container from "react-bootstrap/Container";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+// SignUp Form
 const SignUpForm = () => {
   // LOGIC
-// Use States
+  // Use States
   const [signupform, setSignUpForm] = useState({ email: "", password: "" });
   const [submit, setSubmit] = useState();
-  
+
+  // Modal States
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   // API URLS/PATHS
   // const SignUpUrl = "https://localhost/8000/sign-up/";
   // const SignInUrl = "https://localhost/8000/sign-in/";
-  
 
   // HandleSubmit for SignUp
   const handleSubmit = (event) => {
     event.preventDefault();
-   fetch('http://localhost:8000/sign-up/',{
+    fetch("http://localhost:8000/sign-up/", {
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      method: 'POST',
-      body: JSON.stringify ({
-        email: signupform.email, 
-        password: signupform.password
+      method: "POST",
+      body: JSON.stringify({
+        email: signupform.email,
+        password: signupform.password,
+      }),
+    })
+      .then((res) => {
+        return res.json();
       })
-   }).then(res => {
-     return res.json()
-   })
-    .then(data => console.log(data))
-    .catch(error => console.log('Error - Check Fetch Request'))
-  }
- 
+      .then((data) => console.log(data))
+      .catch((error) => console.log("Error - Check Fetch Request"));
+  };
+
   // HandleChange for SignUp
-  const handleChange = (event) =>{
+  const handleChange = (event) => {
     event.persist();
-    setSignUpForm((prevSubmit) =>{
-      const editedSubmit= {
+    setSignUpForm((prevSubmit) => {
+      const editedSubmit = {
         ...prevSubmit,
         [event.target.name]: event.target.value,
       };
-      console.log(editedSubmit)
+      console.log(editedSubmit);
       return editedSubmit;
-    })
-  }
+    });
+  };
   // This is the code that shows in the browser
   return (
-    <div className="sign-up-form">
-      <form onSubmit={handleSubmit}>
+    <Container className="sign-up-form">
+      <Button variant="primary" onClick={handleShow}>
+        Register
+      </Button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton> Register Here! </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+            <input
+              onChange={handleChange}
+              value={signupform.email}
+              placeholder="Email Address."
+              name="email"
+            />
 
-      <input
-        onChange={handleChange}
-        value={ signupform.email }
-        placeholder="Email Address."
-        name="email"
-      />
+            <input
+              onChange={handleChange}
+              value={signupform.password}
+              placeholder="Password."
+              name="password"
+            />
 
-      <input
-        onChange={handleChange}
-        value={ signupform.password }
-        placeholder="Password."
-        name="password"
-      />
-
-      <button type="Submit">
-            Sign-up
-      </button>
-
-</form>
-    </div>
+            <Button
+              variant="primary"
+              onClick={(event) => {
+                handleSubmit(event);
+                handleClose();
+              }}
+            >
+              Submit
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+    </Container>
   );
-
 };
 
 export default SignUpForm;

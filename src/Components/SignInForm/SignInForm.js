@@ -63,8 +63,6 @@ const SignInForm = () => {
       },
       method: 'DELETE',
     })
-      // .then((res) => res.json())
-      //  .then((data) => console.log(data))
       .then(() => console.log('Console log from Sign Out', info.user.token))
       .catch((error) => console.log('Error Sign Out Request', error)) 
   };
