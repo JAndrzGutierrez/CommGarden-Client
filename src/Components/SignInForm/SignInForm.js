@@ -1,4 +1,9 @@
 import { useState, useEffect } from "react";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
+
 
 const SignInForm = () => {
   // LOGIC
@@ -10,7 +15,7 @@ const SignInForm = () => {
   });
   const [submit, setSubmit] = useState();
   const [info, setInfo] = useState({});
-
+  //Modal States 
   // API URLS/PATHS
   // const SignUpUrl = "https://localhost/8000/sign-up/";
   // const SignInUrl = "https://localhost/8000/sign-in/";
@@ -70,31 +75,33 @@ const SignInForm = () => {
   // This is the code that shows in the browser
 
   return (
-    <div className="sign-in-form">
-      {/* <h1>
-        Logged in as {info ? info.user.token :'NADA DE NADA'} 
-      </h1> */}
-      <form onSubmit={handleSubmit}>
+    <Container className="sign-in-form">
+    
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
         <input
           onChange={handleChange}
           value={signInform.email}
           placeholder="Email Address."
           name="email"
         />
-
+        </Form.Group>
+        <Form.Group>
         <input
           onChange={handleChange}
           value={signInform.password}
           placeholder="Password."
           name="password"
         />
+        </Form.Group>
 
-        <button type="Submit">Sign-In</button>
-      </form>
-      <form onSubmit={handleSignOut}>
-        <button type="Submit">Sign-Out</button>
-      </form>
-    </div>
+        <Button type="Submit">Sign-In</Button>
+      </Form>
+      <Form onSubmit={handleSignOut}>
+        <Button variant="secondary" type="Submit">Sign-Out</Button>
+      </Form>
+      
+    </Container>
   );
 };
 

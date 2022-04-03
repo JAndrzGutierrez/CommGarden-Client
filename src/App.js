@@ -18,8 +18,6 @@ function App() {
           <Route path='/index1'></Route>
           <Route path='/index2'></Route>
           <Route path='/index3'></Route>
-         
-
         </Routes>
       </main>
     </div>
