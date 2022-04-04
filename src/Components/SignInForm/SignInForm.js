@@ -98,7 +98,7 @@ const SignInForm = () => {
         <Button type="Submit">Sign-In</Button>
       </Form>
       <Form onSubmit={handleSignOut}>
-        <Button variant="secondary" type="Submit">Sign-Out</Button>
+        <Button className="sign-out-button" variant="secondary" type="Submit">Sign-Out</Button>
       </Form>
       
     </Container>

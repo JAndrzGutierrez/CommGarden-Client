@@ -2,6 +2,7 @@ import './App.css';
 import NavBar from './Components/NavBar/NavBar';
 import LandingPage from './Components/LandingPage/LandingPage';
 import About from './Components/About/About';
+import TheGarden from './Components/TheGarden/TheGarden';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -12,8 +13,8 @@ function App() {
       <main>
         <Routes>
           <Route path='/home' element={<LandingPage/>}></Route>
-          <Route path='/about'element={<About/>}></Route>
-          <Route path='/thegarden'></Route>
+          <Route path='/about' element={<About/>}></Route>
+          <Route path='/the-garden'element={<TheGarden/>}></Route>
           <Route path='/index'></Route>
           <Route path='/index1'></Route>
           <Route path='/index2'></Route>
