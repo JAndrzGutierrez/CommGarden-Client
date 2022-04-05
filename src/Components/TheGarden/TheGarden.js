@@ -3,36 +3,47 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-const TheGarden = ({}) => {
-  const [GardenTask, setGardenTask] = useState({
+const TheGarden = ({info, setInfo}) => {
+  const [gardenTask, setGardenTask] = useState({
     task: "",
     status: "",
     user: "",
   });
-  const [Info, setInfo] = useState({});
+  
+// console.log("Sign Form Before handle submit",info)
 
   const handleSubmit = (event) => {
-    event.prevent();
-    fetch("http://localhost:8000/garden_tasks", {
-      method: "POST",
+      console.log(info)
+     // lets log info to see if it has the token
+    //  console.log('info.user.token is ', info.user.token)
+
+    event.preventDefault();
+    fetch('http://localhost:8000/garden_tasks/', {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + info.user.token,
       },
-      body: JSON.stringify({
-        task: GardenTask.task,
-        status: GardenTask.status,
-        user: GardenTask.user,
+      method: 'POST',
+      body: JSON.stringify ({
+        task: gardenTask.task,
+        status: gardenTask.status,
+        user: gardenTask.user,
       }),
     })
       .then((res) => {
         return res.json();
       })
-      .then((data) => console.log("This the data from my DB", data))
+      .then(data => {
+        // console.log('This is the POST Garden Data', data)
+        // console.log('Token', info.user.token)
+       
+       
+  })
       .catch((error) =>
-        console.log("Forking Error! You can Forking Fix it!!!")
+        console.log(" Error! You can Forking Fix it!!!")
       );
   };
-
+ 
   const handleChange = (event) => {
     event.persist();
     setGardenTask((prevSubmit) => {
@@ -40,8 +51,7 @@ const TheGarden = ({}) => {
         ...prevSubmit,
         [event.target.name]: event.target.value,
       };
-      setInfo(editedSubmit);
-      console.log("This is the editedSubmit", editedSubmit);
+      // console.log("This is the editedSubmit", editedSubmit);
       return editedSubmit;
     });
   };
@@ -49,40 +59,38 @@ const TheGarden = ({}) => {
   return (
     <Container>
       <Container>
-        <Form onChange={handleChange}>
+        <Form onSubmit={handleSubmit}>
           <Form.Group>
+            {/* the onChange needs to be only in the input  */}
             <input
-              onChange={setGardenTask}
-              value={GardenTask.task}
+              onChange={handleChange}
+              value={gardenTask.task}
               placeholder="Enter Your Task."
-              name="GardenTask"
+              name="task"
             />
           </Form.Group>
-          <Form.Select>
+          <Form.Group>
             <input
-              onChange={setGardenTask}
-              value={GardenTask.task}
-              placeholder="Enter Your Task."
-              name="GardenTask"
+              type="text"
+              onChange={handleChange}
+              value={gardenTask.user}
+              placeholder="Enter User."
+              name="user"
             />
-            <option>Select Status</option>
-            <option onChange={setGardenTask} value={GardenTask.task}>
-              Pending
-            </option>
-            <option onChange={setGardenTask} value={GardenTask.task}>
-              Completed
-            </option>
-            <option onChange={setGardenTask} value={GardenTask.task}>
-              Cancelled
-            </option>
-          </Form.Select>
-          <Button type="submit">
-            Submit
-          </Button>
+            
+            <input
+              type="text"
+              onChange={handleChange}
+              value={gardenTask.status}
+              placeholder="Enter Status."
+              name="status"/>
+           
+          </Form.Group>
+          <Button type="submit">Submit</Button>
         </Form>
       </Container>
 
-      <h1>This is THEGARDEN PAGE</h1>
+      <h1>Thank you for you willingness to Help</h1>
       <iframe
         width="686"
         height="386"
