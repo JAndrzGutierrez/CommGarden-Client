@@ -24,6 +24,7 @@ const NavBar = () =>{
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4"><Link className="nav-bar-link" to='/index3'>About Community Gardens</Link></NavDropdown.Item>
                 </NavDropdown>
+                <a href="https://github.com/JAndrzGutierrez"><i class="fa fa-github-square github" id="github"></i></a>
             </Nav>
             </Navbar.Collapse>
         </Container>

@@ -5,10 +5,16 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <SignInForm />
-      
-      <footer>
-      <i className="fa fa-github-square github" id="github"></i>
-      </footer>
+      <h1></h1>
+       <iframe
+       width="686"
+        height="386"
+        src="https://www.youtube.com/embed/9iwEASoxi70"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+       ></iframe>
     </div>
   );
 };

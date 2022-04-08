@@ -19,7 +19,6 @@ const SignInForm = () => {
 
   // HandleSubmit for SignUp
   const handleSubmit = (event) => {
-    
     event.preventDefault();
     fetch("http://localhost:8000/sign-in/", {
       headers: {
@@ -34,10 +33,10 @@ const SignInForm = () => {
     })
       .then((res) => {
         return res.json();
-        
       })
       .then((data) => {
         // console.log("sign in data is ", data); // print sign in data
+        console.log('Sign Up Log:',data)
         setInfo(data);
       })
       .catch((error) => console.log("Error - HandleSubmit", error)); // when troubleshooting print the error object so you get more info
@@ -53,6 +52,7 @@ const SignInForm = () => {
       };
       setInfo(editedSubmit);
       // console.log("This is the editedSubmit", editedSubmit);
+      console.log('Set Info Log:', editedSubmit)
       return editedSubmit;
     });
   };
@@ -76,6 +76,43 @@ const SignInForm = () => {
   // This is the code that shows in the browser
 
   return (
+    // <Container>
+    //   <Form onSubmit={handleSubmit}>
+    //     <Form.Group className="mb-3" controlId="formBasicEmail">
+    //       <Form.Label>Email address</Form.Label>
+    //       <Form.Control
+    //         type="email"
+    //         placeholder="Enter email"
+    //         onChange={handleChange}
+    //         value={signInform.email}
+    //         name="email"
+    //       />
+    //       <Form.Text className="text-muted">
+    //         We'll never share your email with anyone else.
+    //       </Form.Text>
+    //     </Form.Group>
+
+    //     <Form.Group className="mb-3" controlId="formBasicPassword">
+    //       <Form.Label>Password</Form.Label>
+    //       <Form.Control 
+    //       type="password" 
+    //       placeholder="Password"
+    //       onChange={handleChange}
+    //       value={signInform.password}
+    //       name="password"
+    //       />
+    //     </Form.Group>
+    //     <Form.Group className="mb-3" controlId="formBasicCheckbox"></Form.Group>
+    //     <Button variant="primary" type="submit">
+    //       Submit
+    //     </Button>
+    //   </Form>
+    //   <TheGarden
+    //      info={info}
+    //      setInfo={setInfo}
+    //    />
+    // </Container>
+
     <Container className="sign-in-form">
       <Form onSubmit={handleSubmit}>
         <Form.Group>
