@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/CommGarden-Client/static/css/main.a684a6cc.css",
+    "main.js": "/CommGarden-Client/static/js/main.2abbfaf0.js",
+    "static/js/787.e6000453.chunk.js": "/CommGarden-Client/static/js/787.e6000453.chunk.js",
+    "static/media/communitygarden.png": "/CommGarden-Client/static/media/communitygarden.d49e7b80352a418f1b81.png",
+    "static/media/garden.png": "/CommGarden-Client/static/media/garden.490877f44e3eaf522e11.png",
+    "static/media/vegetables.png": "/CommGarden-Client/static/media/vegetables.ef0eee7c3ed5d0155e88.png",
+    "index.html": "/CommGarden-Client/index.html",
+    "main.a684a6cc.css.map": "/CommGarden-Client/static/css/main.a684a6cc.css.map",
+    "main.2abbfaf0.js.map": "/CommGarden-Client/static/js/main.2abbfaf0.js.map",
+    "787.e6000453.chunk.js.map": "/CommGarden-Client/static/js/787.e6000453.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a684a6cc.css",
+    "static/js/main.2abbfaf0.js"
+  ]
+}
